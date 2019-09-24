@@ -49,7 +49,7 @@ bool CMulticlassLibSVM::train_machine(CFeatures* data)
 	init_strategy();
 	int32_t num_classes = m_multiclass_strategy->get_num_classes();
 	problem.l=m_labels->get_num_labels();
-	io::info("{} trainlabels, {} classes", problem.l, num_classes);
+	// io::info("{} trainlabels, {} classes", problem.l, num_classes);
 
 
 	if (data)

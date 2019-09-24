@@ -789,8 +789,8 @@ template<class ST> bool CStringFeatures<ST>::set_features(const SGVector<ST>* p_
 		for (int32_t i=0; i<p_num_vectors; i++)
 			alpha->add_string_to_histogram( p_features[i].vector, p_features[i].vlen);
 
-		io::info("max_value_in_histogram:{}", alpha->get_max_value_in_histogram());
-		io::info("num_symbols_in_histogram:{}", alpha->get_num_symbols_in_histogram());
+		// io::info("max_value_in_histogram:{}", alpha->get_max_value_in_histogram());
+		// io::info("num_symbols_in_histogram:{}", alpha->get_num_symbols_in_histogram());
 
 		if (alpha->check_alphabet_size() && alpha->check_alphabet())
 		{
@@ -848,8 +848,8 @@ template<class ST> bool CStringFeatures<ST>::append_features(const std::vector<S
 	for (int32_t i=0; i<p_features.size(); i++)
 		alpha->add_string_to_histogram( p_features[i].vector, p_features[i].vlen);
 
-	io::info("max_value_in_histogram:{}", alpha->get_max_value_in_histogram());
-	io::info("num_symbols_in_histogram:{}", alpha->get_num_symbols_in_histogram());
+	// io::info("max_value_in_histogram:{}", alpha->get_max_value_in_histogram());
+	// io::info("num_symbols_in_histogram:{}", alpha->get_num_symbols_in_histogram());
 
 	if (alpha->check_alphabet_size() && alpha->check_alphabet())
 	{
