@@ -120,6 +120,18 @@ class CKernelMachine : public CMachine
 		 */
 		bool get_bias_enabled();
 
+		/** set state of balance
+		 *
+		 * @param enable_bias if bias shall be enabled
+		 */
+		void set_balance_enabled(bool enable_balance);
+
+		/** get state of balance
+		 *
+		 * @return state of balance
+		 */
+		bool get_balance_enabled();
+
 		/** get bias
 		 *
 		 * @return bias
@@ -255,6 +267,9 @@ class CKernelMachine : public CMachine
 
 		/** if bias shall be used */
 		bool use_bias;
+
+		/** if automatically balance class weight */
+		bool use_balance;
 
 		/**  bias term b */
 		float64_t m_bias;

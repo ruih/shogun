@@ -131,6 +131,11 @@ class CMulticlassSVM : public CKernelMulticlassMachine
 		 */
 		bool get_bias_enabled() { return svm_proto()->get_bias_enabled(); }
 		// TODO remove if unnecessary here
+		/** get balance enabled options of base SVM
+		 * @return whether balance of base SVM is enabled
+		 */
+		bool get_balance_enabled() { return svm_proto()->get_balance_enabled(); }
+		// TODO remove if unnecessary here
 		/** get linadd option of base SVM
 		 * @return whether linadd of base SVM is enabled
 		 */
@@ -191,6 +196,11 @@ class CMulticlassSVM : public CKernelMulticlassMachine
 		 * @param enable_bias whether bias should be enabled
 		 */
 		void set_bias_enabled(bool enable_bias) { svm_proto()->set_bias_enabled(enable_bias); }
+		// TODO remove if unnecessary here
+		/** set balance option
+		 * @param enable_balance whether balance should be enabled
+		 */
+		void set_balance_enabled(bool enable_balance) { svm_proto()->set_balance_enabled(enable_balance); }
 		// TODO remove if unnecessary here
 		/** set linadd option
 		 * @param enable whether linadd should be enabled

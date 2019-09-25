@@ -121,6 +121,16 @@ bool CKernelMachine::get_bias_enabled()
     return use_bias;
 }
 
+void CKernelMachine::set_balance_enabled(bool enable_balance)
+{
+    use_balance=enable_balance;
+}
+
+bool CKernelMachine::get_balance_enabled()
+{
+    return use_balance;
+}
+
 float64_t CKernelMachine::get_bias()
 {
     return m_bias;

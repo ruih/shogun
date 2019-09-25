@@ -66,6 +66,8 @@ bool CMulticlassLibSVM::train_machine(CFeatures* data)
 	problem.x=SG_MALLOC(struct svm_node*, problem.l);
 	problem.pv=SG_MALLOC(float64_t, problem.l);
 	problem.C=SG_MALLOC(float64_t, problem.l);
+	float64_t* class_weights=SG_MALLOC(float64_t, num_classes);
+	int* class_weight_labels=SG_MALLOC(int, num_classes);
 
 	x_space=SG_MALLOC(struct svm_node, 2*problem.l);
 
@@ -97,6 +99,26 @@ bool CMulticlassLibSVM::train_machine(CFeatures* data)
 	param.weight_label = NULL;
 	param.weight = NULL;
 	param.use_bias = svm_proto()->get_bias_enabled();
+
+	if(svm_proto()->get_balance_enabled()) {
+		int n_samples = problem.l;
+		int n_classes = num_classes;
+
+		for (int32_t i=0; i<n_classes; i++) {
+			class_weight_labels[i] = i;
+			class_weights[i] = 0;
+		}
+
+		for (int32_t i=0; i<n_samples; i++) {
+			class_weights[int(problem.y[i])]++;
+		}
+		for (int32_t i=0; i<n_classes; i++) {
+			class_weights[i] = float64_t(n_samples) / (n_classes * class_weights[i]);
+		}
+		param.nr_weight = n_classes;
+		param.weight_label = class_weight_labels;
+		param.weight = class_weights;
+	}
 
 	const char* error_msg = svm_check_parameter(&problem,&param);
 
@@ -214,6 +236,8 @@ bool CMulticlassLibSVM::train_machine(CFeatures* data)
 		SG_FREE(x_space);
 		SG_FREE(problem.pv);
 		SG_FREE(problem.C);
+		SG_FREE(class_weights);
+		SG_FREE(class_weight_labels);
 
 		svm_destroy_model(model);
 		model=NULL;
