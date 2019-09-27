@@ -1852,7 +1852,7 @@ static void solve_c_svc(
 	for(i=0;i<l;i++)
 		sum_alpha += alpha[i];
 
-	if (Cp==Cn)
+	//if (Cp==Cn)
 		// io::info("nu = {}", sum_alpha/(param->C*prob->l));
 
 	for(i=0;i<l;i++)
