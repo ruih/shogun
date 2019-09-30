@@ -348,9 +348,9 @@ namespace shogun
 #ifdef __clang_analyzer__
 		_clang_fail();
 #else
-		static_assert(
-		    std::is_nothrow_copy_constructible<ExceptionType>::value,
-		    "ExceptionType must be nothrow copy constructible");
+		//static_assert(
+		//    std::is_nothrow_copy_constructible<ExceptionType>::value,
+		//    "ExceptionType must be nothrow copy constructible");
 
 		fmt::memory_buffer msg;
 		fmt::format_to(msg, format, args...);
